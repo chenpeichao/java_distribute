@@ -3,6 +3,9 @@ package org.pcchen.distribute.zookeeper.zkclient;
 import org.I0Itec.zkclient.IZkDataListener;
 import org.I0Itec.zkclient.ZkClient;
 import org.apache.zookeeper.CreateMode;
+import org.pcchen.distribute.zookeeper.curator.CuratorSessionDemo;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * zkClient连接zookeeper
@@ -14,7 +17,7 @@ public class ZkClientApiDemo {
     private static String ZK_CONNECTION_INFO = "10.10.32.61:2181,10.10.32.30:2181";
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ZkClient zkClient = new ZkClient(ZK_CONNECTION_INFO, 4000);
 
         System.out.println(zkClient + "==》success");
@@ -57,6 +60,7 @@ public class ZkClientApiDemo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
 //        zkClient.writeData("/pcchen", "wojiushiwo4");
 //        try {
 //            Thread.sleep(2000);
@@ -76,5 +80,8 @@ public class ZkClientApiDemo {
 //            e.printStackTrace();
 //        }
         System.out.println("/pcchen节点的数据为：" + zkClient.readData("/pcchen"));
+
+        zkClient.delete("/pcchen");
+        TimeUnit.SECONDS.sleep(5);
     }
 }
