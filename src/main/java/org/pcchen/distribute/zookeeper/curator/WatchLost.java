@@ -25,8 +25,6 @@ public class WatchLost {
             System.out.println("abc");
         } catch (Exception e) {
             e.printStackTrace();
-            ;
-
         } finally {
             System.out.println("def");
         }
